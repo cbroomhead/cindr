@@ -1,25 +1,26 @@
-import logo from './logo.svg';
+import {
+  Routes,
+  Route,
+} from "react-router-dom";
+ 
 import './App.css';
-
+import Sidenav from './Components/Sidenav';
+import Explore from "./Pages/Explore";
+import Chat from "./Pages/Chat";
+import Settings from "./Pages/Settings";
+import Statistics from "./Pages/Statistics";
+ 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Sidenav />
+        <Routes>
+          <Route exact path="/" element={<Chat />}/>
+          <Route path="/explore" element={<Explore />} />
+          <Route path="/statistics" element={<Statistics />}/>
+          <Route path="/settings" element={<Settings />} />
+        </Routes>
     </div>
   );
 }
-
 export default App;
