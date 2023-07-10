@@ -5,10 +5,11 @@ import {
  
 import './App.css';
 import Sidenav from './Components/Sidenav';
-import Explore from "./Pages/Explore";
+import Letters from "./Pages/Letters";
 import Chat from "./Pages/Chat";
 import Settings from "./Pages/Settings";
-import Statistics from "./Pages/Statistics";
+import SavedChats from "./Pages/SavedChats";
+import PageNotFound from "./Pages/PageNotFound";
  
 function App() {
   return (
@@ -16,9 +17,10 @@ function App() {
       <Sidenav />
         <Routes>
           <Route exact path="/" element={<Chat />}/>
-          <Route path="/explore" element={<Explore />} />
-          <Route path="/statistics" element={<Statistics />}/>
+          <Route path="/letters" element={<Letters />} />
+          <Route path="/savedchats" element={<SavedChats />}/>
           <Route path="/settings" element={<Settings />} />
+          <Route path="" component={<PageNotFound />} />
         </Routes>
     </div>
   );

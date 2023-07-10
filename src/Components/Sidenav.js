@@ -4,6 +4,7 @@ import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArro
 import styles from './sidenav.module.css';
 import { NavLink } from "react-router-dom";
 import React, { useEffect, useState } from "react";
+import Divider from '@mui/material/Divider';
 
 
 export default function Sidenav() {
@@ -19,6 +20,7 @@ export default function Sidenav() {
     <button className={styles.menuBtn} onClick={toggleOpen}>
             {open? <KeyboardDoubleArrowLeftIcon />: <KeyboardDoubleArrowRightIcon />}
     </button>
+    <Divider />
     {navData.map(item =>{
         return <NavLink key={item.id} className={styles.sideitem} to={item.link}>
                   {item.icon}
