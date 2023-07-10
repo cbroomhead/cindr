@@ -68,7 +68,7 @@ export default function Chat() {
   
   return (
     <Container maxWidth='false' disableGutters style={{ border: '1px solid rgba(0, 0, 0, 0.12)' }}>
-      <Grid container style={{ border: '1px solid rgba(0, 0, 0, 0.12)' }}> 
+      <Grid container style={{ borderBottom: '1px solid rgba(0, 0, 0, 0.12)' }}> 
           <Grid xs={12} 
             sx={{
               width: 'auto',
