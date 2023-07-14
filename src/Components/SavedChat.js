@@ -1,8 +1,12 @@
+import Paper from '@mui/material/Paper';
+
 export default function SavedChat({chat}) {
 
     return (
         <div>
-            <div> Message: {chat}</div>
+            <Paper>
+                <div> Message: {chat}</div>
+            </Paper>
         </div>
 
     )
