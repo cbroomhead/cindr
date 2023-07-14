@@ -1,4 +1,6 @@
 
+import SavedChat from './SavedChat.js'
+
 import { useRef, useState, useEffect } from 'react';
 import { firestore, db } from '../firebase.js';
 import { addDoc, collection, getDocs, deleteDoc, doc } from '@firebase/firestore'
@@ -7,8 +9,8 @@ export default function Tutorial() {
     const messageRef = useRef();
     const colRef = collection(firestore, 'messages')
 
+    
 //Save message
-
     const handleSave = async(e) => {
         e.preventDefault();
         //console.log(messageRef.current.value);
@@ -67,8 +69,9 @@ export default function Tutorial() {
         </div>
         <div>
             {
-            chats.map((chat) => (
-                <div> {chat.message}</div>
+            chats.map((chat, index) => (
+                /*<div> {chat.message}</div>*/
+                <SavedChat key={index} chat={chat.message}/>
 
             ))
             }
