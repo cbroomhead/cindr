@@ -1,6 +1,15 @@
+import Tutorial from '../Components/Tutorial.js'
+
+
 export default function SavedChats() {
+
   return (
-    <div>Storing letters and other documents to be reused
-    Maybe a train your own model feature</div>
+    <div>
+      <div>
+        this will be were savd chat are stored
+      </div>
+      <Tutorial />
+      
+    </div>
   )
 }
