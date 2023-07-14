@@ -5,18 +5,18 @@ import { addDoc, collection, getDocs, deleteDoc, doc } from '@firebase/firestore
 
 export default function Tutorial() {
     const messageRef = useRef();
+    const colRef = collection(firestore, 'messages')
 
-    const ref = collection(firestore, 'messages')
 //Save message
 
     const handleSave = async(e) => {
         e.preventDefault();
-        console.log(messageRef.current.value);
+        //console.log(messageRef.current.value);
         let data = {
             message: messageRef.current.value,
         }
         try {
-            addDoc(ref, data);
+            addDoc(colRef, data);
         } catch (e) {
             console.log(e);
         }
@@ -24,21 +24,32 @@ export default function Tutorial() {
 
 //Fetch message
     const [chats, setChats] = useState([]);
-    const fetchChats = async(e) => {
-        getDocs(ref).then((snapshot) => {
-            snapshot.docs.forEach((doc) => {
-                chats.push({ ...doc.data(), id: doc.id, })
+
+    window.addEventListener('load', () => {
+        fetchChats();
+    });
+
+    const fetchChats = async() => {
+        const savedmessages = await getDocs(colRef)
+             const chats = savedmessages.docs.map((chat) => {
+                const data = chat.data()
+                    data.id = chat.id
+                    return data
             })
-        console.log(chats)
-        })
-        .catch(err =>{
-            console.log(err.message)
-        })
+             console.log(chats)
+             setChats(chats)
     };
 
-    useEffect(() => {
-            fetchChats();
-        }, [])
+    // code below works
+    // useEffect(() => {
+    //         //fetchChats();
+    //     ;(async () => {
+    //         const snapshots = await getDocs(colRef)
+    //         const docs = snapshots.docs.map((doc) => doc.data())
+    //         console.log(docs)
+    //     })()
+        
+    //     }, [])
 
 //Delete message
 
@@ -52,7 +63,15 @@ export default function Tutorial() {
         </form>
 
         <div> 
-           Hello Fetch Chats
+           Saved messages below
+        </div>
+        <div>
+            {
+            chats.map((chat) => (
+                <div> {chat.message}</div>
+
+            ))
+            }
         </div>
 
       </div>
